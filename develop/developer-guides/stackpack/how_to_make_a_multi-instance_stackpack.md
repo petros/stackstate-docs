@@ -1,3 +1,8 @@
+---
+title: How to make a multi-instance StackPack
+kind: Documentation
+---
+
 # How to make a multi-instance StackPack
 
 This documentation set explains how to make a StackPack that can be installed as multiple instances in StackState. Below you can find the introduction to this topic and the steps to get a multi-instance StackPack. This
@@ -15,7 +20,7 @@ Multi-instance StackPack package looks a little different from a standard StackP
     │   │     └── ExampleProvision.groovy
     │   └── templates
     │       ├── instance template.json.handlebar
-    │       ├── shared template.json.handlebar
+  │       ├── shared template.json.handlebar
     │       └── application template.json.handlebar
     ├── resources
     │   ├── logo.png

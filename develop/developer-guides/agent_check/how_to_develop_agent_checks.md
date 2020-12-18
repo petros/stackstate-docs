@@ -1,3 +1,8 @@
+---
+title: How to develop agent checks
+kind: Documentation
+---
+
 # How to develop agent checks
 
 This document covers how to create your first check with Agent v2 Check API. Following topics are covered in this document: the agent directory structure, configuring your check, writing your first check, sending topology, metrics, events, and service checks as well as how to add external python dependencies and putting it all together.
@@ -174,7 +179,7 @@ self.relation("some-application-unique-identifier", "this-host-unique-identifier
 
 This creates two components in StackState. One for the host named `this-host` and one for an application named `some-application`. The `domain` value is used in the horizontal grouping of the components in StackState and `layer` is used for vertical grouping. The `labels`, `tags` and `environment` add some metadata to the component and can also be used for filtering in StackState. An `IS_HOSTED_ON` relation is created between `some-application` and `this-host`. The `labels` and `tags` fields can also be used on relations to add some metadata. The component types \(`Host`, `Application`\) and relation type \(`IS_HOSTED_ON`\) will be automatically created in StackState and can later be used in the synchronization to create mappings for the different types.
 
-The identifiers and the external identifier, for example `some-application-unique-identifier` will be used as the StackState Id. The `external identifer` should be unique within this integration.
+The identifiers and the external identifier e.g. `some-application-unique-identifier` will be used as the StackState Id. The `external identifer` should be unique within this integration.
 
 #### Merging Identifiers
 
@@ -198,7 +203,7 @@ self.component("this-host-unique-identifier-integration-b", "Host", {
 
 These two components will be merged into a single component called `this-host` containing data from both integrations.
 
-Learn more about the [Agent Check Topology API](checks_in_agent_v2.md)
+Learn more about the Agent Check Topology API [here](checks_in_agent_v2.md)
 
 ### Sending Metrics
 
@@ -216,7 +221,7 @@ self.gauge("system.cpu.usage", 24.5, tags=["hostname:this-host"])
 
 Note: It is important to have a tag or combination of tags that you can use to uniquely identify this metric and map it to the corresponding component within StackState.
 
-Learn more about the [Agent Check Metric API](checks_in_agent_v2.md)
+Learn more about the Agent Check Metric API [here](checks_in_agent_v2.md)
 
 ### Sending Events
 
@@ -236,7 +241,7 @@ self.event({
 })
 ```
 
-Learn more about the [Agent Check Event API](checks_in_agent_v2.md)
+Learn more about the Agent Check Event API [here](checks_in_agent_v2.md)
 
 ### **Sending in Stream Definitions and Health Checks**
 
@@ -270,7 +275,7 @@ self.component("this-host-unique-identifier", "Host",
 
 We create a `MetricStream` on the `system.cpu.usage` metric with some conditions specific to our component. We then create a `maximum_average` check on our metric stream using `this_host_cpu_usage.identifier` . The stream and check are then added to the streams and checks list in our `this-host` component.
 
-Learn more about the [Agent Check Telemetry API](checks_in_agent_v2.md#sending-streams-and-checks)
+Learn more about the Agent Check Telemetry API [here](checks_in_agent_v2.md#sending-streams-and-checks)
 
 ### Sending Service Checks
 
@@ -290,7 +295,7 @@ The service check can produce the following states:
 * AgentCheck.CRITICAL
 * AgentCheck.UNKNOWN
 
-Learn more about the [Agent Check Service Check API](checks_in_agent_v2.md)
+Learn more about the Agent Check Service Check API [here](checks_in_agent_v2.md)
 
 ### Adding Python Dependencies
 

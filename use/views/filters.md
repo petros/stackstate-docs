@@ -1,4 +1,4 @@
-# Filter components in a view
+# Filtering
 
 The View Filters pane on the left side of the StackState UI allows you to filter the components and other information displayed in each perspective.
 
@@ -14,36 +14,25 @@ Topology Filters can be used to select a sub-set of topology components to be sh
 
 The main way of filtering the topology is by using the basic filters. When you set a filter, the open perspective will update to show only the visualization or data for the subset of your topology that matches the filter. Setting multiple filters will narrow down your search further. You can set more than one value for each filter to expand your search
 
-| Filter | Description |
+| Basic filter | Description |
 | :--- | :--- |
-| Layers, Domains, Environments and Types | Filter by the component details included when components are imported or created. |
-| Health | Only include components with the named health state as reported by the associated [health check](../health-state-and-alerts/add-a-health-check.md). |
-| Labels | Only include components with a [custom label](../../configure/topology/tagging.md) or a default integration label, for example the [Dynatrace integration](../../stackpacks/integrations/dynatrace.md#dynatrace-filters-for-stackstate-views). |
-| Components | The Components filter behaves differently to other filters. Components named here will be included in the topology **in addition to** the components returned from other filters. |
+| Layers Domains Environments | Topology organization |
+| Types | Component type |
+| Health | Health state |
+| Labels | Component labels |
+| Components | Always include the named component\(s\) |
 
-The example below uses basic filters to return components that match the following conditions:
+### Basic filtering example
 
-* In the **Domain** `security check`
-* AND has a **Health** state of `Clear` OR `Deviating`
-* OR is the **Component** with the name `bambDB`
+Here is an example of using a basic filter to search for components by **Domains**.
 
-![Filtering example](../../.gitbook/assets/v42_basic_filter_example.png)
-
-This could also be written as an advanced filter, see [advanced topology filters](filters.md#advanced-topology-filters).
+![Filtering example](../../.gitbook/assets/v41_basic_filtering.png)
 
 ### Advanced topology filters
 
 You can use the in-built [StackState Query Language \(STQL\)](../../develop/reference/stql_reference.md) to build an advanced topology filter that zooms in on a specific area of your topology.
 
-The example below uses an advanced filter to return components that match the following conditions:
-
-* In the domain `security check`
-* AND has a healthstate of `CLEAR` OR `DEVIATING`
-* OR has the name `bambDB`
-
-![Filtering \(advanced filter\)](../../.gitbook/assets/v42_advanced_filter_example.png)
-
-This could also be done using basic filters, see [basic topology filters](filters.md#basic-topology-filters).
+![Filtering\(advanced filter\)](../../.gitbook/assets/advanced_filtering%20%288%29.png)
 
 ### Topology filtering limits
 
@@ -68,5 +57,5 @@ You can use the View Filters pane to filter the type of events shown in the [Eve
 
 ## Filter Traces
 
-The traces shown in the Traces Perspective can be filtered by **Tags** or **Span Types**. Read more about [FIlter Traces](traces-perspective.md#trace-filters)
+The traces shown in the Traces Perspective can be filtered by **Tags** or **Span Types**. Read more about [FIlter Traces](traces_perspective.md#trace-filters)
 

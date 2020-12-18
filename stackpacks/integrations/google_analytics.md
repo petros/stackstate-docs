@@ -1,3 +1,8 @@
+---
+title: Google Analytics StackPack
+kind: documentation
+---
+
 # Google Analytics
 
 ## What is the Google Analytics StackPack?

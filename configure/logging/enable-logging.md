@@ -1,192 +1,197 @@
 ---
-description: Set the logging level for an instance of a StackState function
+description: 'Enable logging for StackState checks, event handlers and functions'
 ---
 
-# Enable logging for functions
+# Enable logging
 
 ## Overview
 
-For debugging purposes, it may be helpful to enable logging for a StackState function. You can add logging statements to functions and then use the StackState CLI to set the logging level for individual instances of a check function, event handler function, propagation function or view state configuration function. Log messages will be added to the StackState log file `stackstate.log`. It is not currently possible to enable logging for other function types.
+For debugging purposes, it may be helpful to enable logging for a StackState check, event handler or function. You can use the StackState CLI to set a logging level and then track messages in the file `stackstate.log`. Logging can be enabled for checks, event handlers, component actions, propagation functions and view state configuration functions. Note that it is not currently possible to enable logging for other function types.
 
-## Set the logging level for a function instance
+## Enable logging for a check, event handler or function
 
-To enable logging for an instance of a function, use its ID to set a logging level in the StackState CLI. Note that the function itself will have an ID and each instance of the function relating to a component or view in StackState will have a separate ID.
+The logging level can be set in the StackState CLI using the ID of the check, event handler or function.
 
 {% hint style="info" %}
-The logging level should be set using the ID for an instance of a function, not the ID of the function itself.
+Note that logging will be enabled for an instance of a check, event handler or function, not for the function itself.
 {% endhint %}
 
-1. Find the ID for the instance of the function that you want to enable logging for:
-   * [Check IDs](enable-logging.md#check-and-propagation-ids)
-   * [Event handler IDs](enable-logging.md#event-handler-ids)
-   * [Propagation IDs](enable-logging.md#check-and-propagation-ids)
-   * [View health state configuration IDs](enable-logging.md#view-health-state-configuration-ids)
+1. Find the ID for the check, event handler or function you want to enable logging for:
+   * [Checks](enable-logging.md#checks-and-propagation-functions)
+   * [Event handlers](enable-logging.md#event-handlers)
+   * [Component actions](enable-logging.md#component-actions)
+   * [Propagation functions](enable-logging.md#checks-and-propagation-functions)
+   * [View health state configuration functions](enable-logging.md#view-health-state-configuration-functions)
 2. Use the [StackState CLI](../../setup/installation/cli-install.md) to set the logging level for the ID, for example:
 
    ```text
    sts serverlog setlevel <id> DEBUG
    ```
 
-3. Monitor the `stackstate.log` using the function instance ID.
+3. Monitor the `stackstate.log` using the ID.
 
    ```text
    tail -f stackstate.log | grep <id>
    ```
 
-## Add logging statements to a function
+## Add logging to a StackState function
 
-Logging statements can be added to StackState functions and monitored in the `stackstate.log` file. This is useful for debug purposes.
+Logging statements can be added to StackState functions and monitored in the `stackstate.log`. This is useful for debug purposes.
 
 1. Add a log statement in the function's code. For example:
    * `log.info("message")`
    * `log.info(variable.toString())`
-2. [Set a logging level](enable-logging.md#set-the-logging-level-for-a-function-instance) to enable logging for an instance of the function.
+2. [Enable logging](enable-logging.md#enable-logging-for-a-check-event-handler-or-function) for the function.
 
-## Find the ID for a function instance
+## Find the ID for a check, event handler or function
 
-Retrieve the ID for a specific instance of a function:
+Retrieve the ID for a specific check, event handler or function:
 
-* [Check IDs](enable-logging.md#check-and-propagation-ids)
-* [Event handler IDs](enable-logging.md#event-handler-ids)
-* [Propagation IDs](enable-logging.md#check-and-propagation-ids)
-* [View health state configuration IDs](enable-logging.md#view-health-state-configuration-ids)
+* [Checks](enable-logging.md#checks-and-propagation-functions)
+* [Event handlers](enable-logging.md#event-handlers)
+* [Component actions](enable-logging.md#component-actions)
+* [Propagation functions](enable-logging.md#checks-and-propagation-functions)
+* [View health state configuration functions](enable-logging.md#view-health-state-configuration-functions)
 
-### StackState CLI
+### Analytics environment
 
-#### Event handler IDs
+#### Component actions
 
-The ID for an event handler can be found using the [StackState CLI](../../setup/installation/cli-install.md). This is the ID for an instance of an event handler function.
-
-* To list all event handlers, run the StackState CLI command below.
-* Use the `id` from the command output to [enable logging](enable-logging.md#set-the-logging-level-for-a-function-instance) for a specific event handler.
+* Execute the query below in the [StackState UI Analytics environment](../../develop/reference/scripting/#running-scripts) to list all component actions.
+* Use the ID from the query result to [enable logging](enable-logging.md#enable-logging-for-a-check-event-handler-or-function) for the component action.
 
 {% tabs %}
-{% tab title="CLI command" %}
+{% tab title="Query" %}
 ```text
-sts graph list EventHandler
+Graph.query{it.V()
+    .hasLabel("ComponentActionDefinition")
+    .project("name", "id", "type")
+    .by("name")
+    .by(__.id())
+    .by(__.label())
+}
 ```
 {% endtab %}
 
 {% tab title="Example result" %}
 ```text
-             id  type          name          description    owned by    manual    last updated
----------------  ------------  ------------  -------------  ----------  --------  ------------------------
-114118706410878  EventHandler  demo_handler                             True      Fri Nov 13 11:32:29 2020
+[
+  {
+    "id": 154786643410143,
+    "name": "test",
+    "type": "ComponentActionDefinition"
+  }
+]
 ```
 {% endtab %}
 {% endtabs %}
 
-#### View health state configuration IDs
+#### Event handlers
 
-The ID for a view health state configuration can be found using the [StackState CLI](../../setup/installation/cli-install.md). This is the ID for a view's instance of a view health state configuration function.
-
-* Run the two StackState CLI commands below:
-  1. To return the IDs of all StackState views.
-  2. To retrieve the JSON for a specific view ID.
-* Use the `viewHealthStateConfiguration` ID from the retrieved view JSON to [enable logging](enable-logging.md#set-the-logging-level-for-a-function-instance) for this instance of the view health state configuration function. In the example below, this would be `39710412772194`.
+* Execute the query below in the [StackState UI Analytics environment](../../develop/reference/scripting/#running-scripts) to list all event handlers.
+* Use the ID from the query result to [enable logging](enable-logging.md#enable-logging-for-a-check-event-handler-or-function) for the event handler.
 
 {% tabs %}
-{% tab title="CLI command" %}
+{% tab title="Query" %}
 ```text
-# get IDs of all views
-sts graph list QueryView
-
-# get the ID of the specified view's "viewHealthStateConfiguration"
-sts graph show-node <VIEW_ID>
+Graph.query{it.V()
+    .hasLabel("EventHandler")
+    .project("name", "id", "type")
+    .by("name")
+    .by(__.id())
+    .by(__.label())
+}
 ```
 {% endtab %}
 
 {% tab title="Example result" %}
 ```text
-$ sts graph list QueryView                           
-             id  type       name                       description    owned by                      manual    last updated
----------------  ---------  -------------------------  -------------  ----------------------------  --------  ------------------------
-  9161801377514  QueryView  Demo - Customer A          -              urn:stackpack:demo-stackpack  False     Fri Nov 13 16:24:38 2020
-199988472830315  QueryView  Demo - Customer B          -              urn:stackpack:demo-stackpack  False     Fri Nov 13 16:24:38 2020
-278537340600843  QueryView  Demo - Business Dashboard  -              urn:stackpack:demo-stackpack  False     Fri Nov 13 16:24:38 2020
+[
+  {
+    "id": 275935840353084,
+    "name": "test",
+    "type": "EventHandler"
+  }
+]
+```
+{% endtab %}
+{% endtabs %}
 
+#### View health state configuration functions
 
-$ sts graph show-node 9161801377514
+* Execute the query below in the [StackState UI Analytics environment](../../develop/reference/scripting/#running-scripts) to list all view health state configuration functions. 
+* Use the ID from the query result to [enable logging](enable-logging.md#enable-logging-for-a-check-event-handler-or-function) for the function.
 
-{
-   "id":9161801377514,
-   "lastUpdateTimestamp":1605284678082,
-   "name":"Demo - Customer A",
-   "groupedByDomains":true,
-   "groupedByLayers":true,
-   "groupedByRelations":true,
-   "showIndirectRelations":true,
-   "showCause":"NONE",
-   "state":{
-      "id":212230744931364,
-      "lastUpdateTimestamp":1605284689666,
-      "state":"CLEAR",
-      "_type":"ViewHealthState"
-   },
-   "viewHealthStateConfiguration":{
-      "id":39710412772194,
-      "lastUpdateTimestamp":1605284678082,
-      "function":28286436254116,
-      "enabled":true,
-      "arguments":[
-         {
-            "id":128484527572993,
-            "lastUpdateTimestamp":1605284678082,
-            "parameter":184761614904259,
-            "value":1,
-            "_type":"ArgumentLongVal"
-         },
-         {
-            "id":229304367255010,
-            "lastUpdateTimestamp":1605284678082,
-            "parameter":178411912509267,
-            "value":1,
-            "_type":"ArgumentLongVal"
-         }
-      ],
-      "_type":"ViewHealthStateConfiguration"
-   },
-   "groupingEnabled":true,
-   "minimumGroupSize":4,
-   "query":"(domain IN (\"customer E\") AND layer IN (\"API\", \"applications\", \"business application\", \"hypervisor\", \"databases\", \"k8s_proc\", \"lambda\", \"network devices\", \"location\", \"rack\", \"row\", \"servers\", \"services\", \"storage\"))",
-   "queryVersion":"0.0.1",
-   "identifier":"urn:stackpack:demo-stackpack:query-view:demo-customer-e",
-   "ownedBy":"urn:stackpack:demo-stackpack",
-   "eventTypes":[
-
-   ],
-   "tags":[
-
-   ],
-   "spanTypes":[
-
-   ],
-   "_type":"QueryView"
+{% tabs %}
+{% tab title="Query" %}
+```text
+Graph.query{it.V()
+    .hasLabel("ViewHealthStateConfiguration")
+    .project("name", "id").by(__.in("HAS_VIEW_STATE_EVENT_HANDLER")
+    .properties("name")
+    .value())
+    .by(__.id())
 }
+```
+{% endtab %}
+
+{% tab title="Example result" %}
+```text
+[
+  {
+    "id": 199788904929228,
+    "name": "Demo - Shared Infra"
+  },
+  {
+    "id": 145007127435760,
+    "name": "Demo - Customer B"
+  },
+  {
+    "id": 101484217135893,
+    "name": "Demo - Customers View"
+  },
+  {
+    "id": 47738295055704,
+    "name": "Demo - Service"
+  },
+  {
+    "id": 155715925953458,
+    "name": "Demo - Business Dashboard"
+  },
+  {
+    "id": 240446163862311,
+    "name": "Demo - Customer D"
+  },
+  {
+    "id": 58208596693730,
+    "name": "Demo - Customer E"
+  },
+  {
+    "id": 176016933421140,
+    "name": "Demo - Customer A"
+  }
+]
 ```
 {% endtab %}
 {% endtabs %}
 
 ### StackState UI
 
-#### Check and propagation IDs
+#### Checks and propagation functions
 
-The ID for a check or propagation on a specific component can be found in in the StackState UI. These are the IDs for the component's instance of a check function or propagation function.
+You can find the check or propagation ID for a specific component in the StackState UI.
 
-1. Click on a component to open the component details on the right of the screen.
+1. Click on a component to open the component details.
 2. Click on **...** and select **Show JSON**.
 3. Find the section for `"checks"` or `"propagation"`.
 4. Find the check or propagation that you want to enable logging for and copy the value from the field `id`.
 
-![Show JSON](../../.gitbook/assets/v42_show-json.png)
+![Show JSON](../../.gitbook/assets/v41_show-json.png)
 
-* Use the ID to [enable logging](enable-logging.md#set-the-logging-level-for-a-function-instance) for the component's check or propagation functions.
+* Use the ID to [enable logging](enable-logging.md#enable-logging-for-a-check-event-handler-or-function) for the check or propagation funtion.
 
 ## See also
 
-* [StackState CLI](../../setup/installation/cli-install.md)
-* [Checks and check functions](../telemetry/checks_and_streams.md#checks)
-* [Event handler functions](../topology/event-handlers.md)
-* [State propagation and propagation functions](../topology/propagation.md)
-* [View state configuration functions](../topology/view_state_configuration.md)
+* [StackState CLI](https://github.com/StackVista/stackstate-docs/tree/e8f0507c73d0adb5625dec3f31ed65f2fbe98188/setup/installation/cli-install/README.md)
+* [StackState UI Analytics environment](../../develop/reference/scripting/#running-scripts)
 

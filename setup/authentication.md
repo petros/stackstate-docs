@@ -1,3 +1,8 @@
+---
+title: Configuring authentication
+kind: Documentation
+---
+
 # Authentication
 
 Out of the box, StackState is configured with [file-based authentication](authentication.md#configuring-file-based-authentication), which authenticates users against a file on the server. In addition to this mode, StackState can also authenticate users against the following authentication servers:
@@ -19,7 +24,7 @@ StackState ships with the default user roles **Guest**, **Power User** and **Adm
 
 When deciding on the roles to assign your users it is strongly advised to have only a small group of Administrators, for example only the engineers responsible for installing StackState and doing the initial configuration. Administrator users can manage access to StackState and decide which StackPacks can be used. Installing StackPacks and other fine tuning of the configuration can be delegated to a larger number of users with the Power User role.
 
-It is also possible to add more roles, see the page [Roles \(RBAC\)](../configure/security/rbac/rbac_roles.md) and the other [RBAC documentation pages](../configure/security/rbac/)
+It is also possible to add more roles, see the page [Roles \(RBAC\)](../configure/security/rbac/rbac_roles.md) and the other [RBAC documentation pages](https://github.com/StackVista/stackstate-docs/tree/51daef01199490a90b81f339d205a46b1c4302f3/configure/security/rbac/README.md)
 
 ## Default username and password
 
@@ -179,7 +184,7 @@ helm install \
 stackstate/stackstate
 ```
 
-For more details of configuration through Helm, see the [StackState Helm chart readme](https://github.com/StackVista/helm-charts/blob/master/stable/stackstate).
+For more details of configuration through Helm, see the [StackState Helm chart readme](https://github.com/StackVista/helm-charts/blob/master/stable/stackstate/README.md).
 
 ## KeyCloak OIDC Authentication Server
 
@@ -236,7 +241,7 @@ In order to connect StackState to KeyCloak, you need to add a new client configu
 4. **Standard Flow Enabled** - This should be `Enabled`
 5. **Implicit Flow Enabled** - This should be `Disabled`
 6. **Root URL** - This should point to the root location of StackState
-7. **Valid redirect URIs** - This should be `/loginCallback/*`
+7. **Valid redirect URIs** - This shoud be `/loginCallback/*`
 8. **Base URL** - This should point to the root location of StackState
 
 ## REST API authentication

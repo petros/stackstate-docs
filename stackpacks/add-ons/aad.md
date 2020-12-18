@@ -1,10 +1,6 @@
-# Autonomous Anomaly Detector \(BETA\)
+# Autonomous Anomaly Detector
 
 ## What is the Autonomous Anomaly Detector StackPack?
-
-{% hint style="info" %}
-The Autonomous Anomaly Detector add-on is in **BETA**.
-{% endhint %}
 
 Anomaly detection identifies incidents in your fast-changing IT environment and provides insights into their root cause. This directs the attention of IT operators to the root cause of incidents.
 
@@ -20,7 +16,6 @@ The stream selection algorithm works as follows:
 
 * Components in Views that have the most stars are selected.
 * From those components, only high priority metric streams are selected. See [how to set the priority for a stream](../../configure/telemetry/how_to_use_the_priority_field_for_components.md).
-* Metric streams with a configured baseline will not be selected. See [anomaly detection with baselines](../../use/health-state-and-alerts/anomaly-detection-with-baselines.md).
 
 You cannot directly control the stream selected, but you can steer the selection by starring Views and setting the priority of streams to `high`.
 
@@ -91,7 +86,7 @@ Create the file `values.yaml` file including the configuration described below a
   * **tag** - the image version e.g `4.1.0-release`
   * **pullSecretUsername** - the image registry username \(from step 1\)
 * **stackstate:**
-  * **instance** - the StackState instance URL. This must be a StackState internal URL to keep traffic inside the Kubernetes network and namespace. e.g `http://stackstate-server-headless:7070/` or `http://<releasename>-stackstate-server-headless:7070/`
+  * **instance** - the StackState instance url. This must be a StackState internal url to keep traffic inside the Kubernetes network and namespace. e.g `http://stackstate-server-headless:7070/` or `http://<releasename>-stackstate-server-headless:7070/`
 * **ingress:** - Ingress provides access to the technical interface of the AAD Kubernetes service, this is useful for troubleshooting. The example below shows how to configure an nginx-ingress controller. Setting up the controller itself is beyond the scope of this document. More information about how to set up Ingress can be found at:
   * [AKS](https://docs.microsoft.com/en-us/azure/aks/ingress-tls)
   * [EKS Official docs](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) \(not using nginx\)
@@ -145,7 +140,7 @@ helm upgrade anomaly-detector stackstate/anomaly-detection \
 
 The AAD Kubernetes service is released independently from StackState, therefore you may benefit from upgrading often. To upgrade the AAD Kubernetes service:
 
-1. Check the [release notes](aad.md#release-notes) section at the bottom of this page to find the required image tag and helm chart version for the release.
+1. Check the [release notes](aad.md#release-notes) section at the bottom of this page to find the required image tag and helm chart version for the release. 
    * Update the image tag in `values.yaml`.
    * Fetch the helm chart version:
 
@@ -203,41 +198,11 @@ The status UI tab **Job Progress** shows a ranked list of streams with schedulin
 
 ## Release Notes
 
-Release notes for the [AAD StackPack](aad.md#aad-stackpack) and the [AAD Kubernetes service](aad.md#aad-kubernetes-service) are available below.
+Release notes for the AAD Kubernetes service are included below. AAD StackPack release notes can be found in the StackPack.
 
-### AAD StackPack
+**BETA Release**
 
-#### AAD StackPack v0.6 BETA \(13-10-2020\)
-
-* Documentation fixes and minor maintenance work.
-
-#### AAD StackPack v0.2.2 BETA \(04-09-2020\)
-
-* Releasing Autonomous Anomaly Detector service BETA.
-
-### AAD Kubernetes service
-
-#### AAD Kubernetes service v4.2.0 BETA
-
-**Helm chart version**: 4.1.27  
-**Image tag**: 4.2.0-release  
-**Release date**: 2020-12-11
-
-Changes in this version:
-
-* Performance, stability and other bug fixes.
-
-#### AAD Kubernetes service v4.1.2 BETA
-
-**Helm chart version**: 4.1.24  
-**Image tag**: 4.1.2-release  
-**Release date**: 2020-11-27
-
-Changes in this version:
-
-* Improved stream selection and ranking. Stream selection is able to handle timeouts gracefully. Stream ranking applies heuristic based stream prioritization.
-
-#### AAD Kubernetes service v4.1.1 BETA
+### AAD Kubernetes service 4.1.1
 
 **Helm chart version**: 4.1.18  
 **Image tag**: 4.1.1-release  
@@ -250,7 +215,7 @@ Changes in this version:
 * Improved model selection efficiency.
 * Fixed various minor bugs.
 
-#### AAD Kubernetes service v4.1.0 BETA
+### AAD Kubernetes service 4.1.0
 
 **Helm chart version**: 4.1.15  
 **Image tag**: 4.1.0-release  
@@ -258,5 +223,5 @@ Changes in this version:
 
 Changes in this version:
 
-* Releasing Autonomous Anomaly Detector service BETA.
+* Releasing Autonomous Anomaly Detector service Beta.
 

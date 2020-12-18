@@ -2,7 +2,7 @@
 description: Functions for predicting data available in StackState
 ---
 
-# Prediction - script API
+# Script API: Prediction
 
 ## Function: `predictMetrics`
 
@@ -23,8 +23,6 @@ Predict metrics for any metric query coming from any data source.
 * `includeHistory(start?: Instant, end?: Instant)` - call this builder method to include the result of the `query` in the return value. Optionally a start and end can be added to limit the included history using the [instant format](time.md). When not specifying the start and end the whole history will be included.
 
 **Return type:**
-
-`AsyncScriptResult[PredictionResponse]`
 
 A `PredictionResponse`, which contains the following fields:
 

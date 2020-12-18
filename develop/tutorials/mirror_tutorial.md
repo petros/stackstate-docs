@@ -1,10 +1,6 @@
----
-description: Set up a mirror to retrieve telemetry data on-demand from an external system.
----
-
 # Mirror integration tutorial
 
-StackState supports fetching external telemetry and mapping this onto components as metric streams, for instance with the AWS StackPack and CloudWatch. In this scenario, StackState pulls telemetry data from CloudWatch on-demand when required for StackState server processes or the StackState GUI. The telemetry data from CloudWatch is not copied into StackState, but retrieved and used when needed. This concept is called _mirroring_ and is further described [in the StackState documentation](https://github.com/StackVista/stackstate-docs/tree/d2496325c86159cd6adbe80168d89f7ff825ca9f/develop/developer-guides/mirroring.md).
+StackState supports fetching external telemetry and mapping this onto components as metric streams, for instance with the AWS StackPack and CloudWatch. In this scenario, StackState pulls telemetry data from CloudWatch on-demand when required for StackState server processes or the StackState GUI. The telemetry data from CloudWatch is not copied into StackState, but retrieved and used when needed. This concept is called _mirroring_ and is further described [in the StackState documentation](https://github.com/StackVista/stackstate-docs/tree/e8f0507c73d0adb5625dec3f31ed65f2fbe98188/develop/developer-guides/mirroring.md).
 
 Mirror integrations can be built in any language and run as a separate process. A mirror can:
 

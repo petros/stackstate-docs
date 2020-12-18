@@ -1,3 +1,8 @@
+---
+title: Synchronizations and templated files
+kind: Documentation
+---
+
 # Synchronizations and templated files
 
 To obtain the `.stj` Templated file for your StackPack you need to perform a few steps in StackState Settings page and then edit the template file by hand.
@@ -41,7 +46,7 @@ The first step is to prepare a check using the Agent V2 StackPack. This step all
 
 To install this StackPack go to StackState's StackPacks section and locate the "Custom Synchronization" in Other StackPacks. During the installation process, you need to provide the following information:
 
-* Instance type \(source identifier\) - this is the identifier for the resource that you want to integrate with StackState, for example, AWS, Azure and Zabbix.
+* Instance type \(source identifier\) - this is the identifier for the resource that you want to integrate with StackState, for example, AWS, Azure, Zabbix, etc.
 * Instance URL - The URL of the instance the data is being reported for.
 
 When the above information is provided click the "Install" button and if Agent V2 checks are working you should start to see the topology coming in for your integration and the "Custom Synchronization" should become enabled.
@@ -64,7 +69,7 @@ Component types and Relation types can also be created automatically by StackSta
 
 When creating a StackPack, it is important to have a `component` and `relation` identity extractor function. There are a few default Id Extractor Functions present in StackState. The `Auto sync component id extractor` and `Auto sync relation id extractor` are good starting points for your StackPack. You can go ahead and rename these, add a description if needed, and confirm the popup dialog to unlock these Id Extractor Functions from the `Custom Synchronization` StackPack.
 
-Read more about [Id Extractors](../../use/introduction-to-stackstate/id_extraction.md)
+More on Id Extractors - \[here\]/develop/concepts/id\_extraction.md\)
 
 ### 6. Prepare Component and Relation Mapping Functions
 
@@ -140,9 +145,9 @@ Each of the node elements represents a configuration item in StackState. This co
 * Typical `identifier` pattern that you can find across our StackPacks configuration is: `urn:stackpack:{stackpack_name}:{type_name}:{object_name}`
 * For StackPacks that can have multiple instances the identifier has a slightly different pattern: `urn:stackpack:{stackpack_name}:instance:{{instanceId}}:{type_name}:{object_name}` where `{{instanceId}}` is uniquely genrated for every instance of the StackPack.
 
-The only way to add/modify the identifiers is the manual edit of the configuration file. This option will be available also through UI in the upcoming releases.
+As of 1.14.13, the only way to add/modify the identifiers is the manual edit of the configuration file. This option will be available also through UI in the upcoming releases.
 
-After cleaning up the configuration file it is time to template out the variables exposed by your StackPack. As explained in the [Configuration input](stackpack/prepare_package.md) documentation section, it is possible to define some input fields that your StackPack requires to authenticate against some external sources and to differentiate between instances. To generalize the configuration, it is needed to inject the configuration file with some template parameters which is provided by the [Provisioning Script](https://github.com/StackVista/stackstate-docs/tree/d2496325c86159cd6adbe80168d89f7ff825ca9f/develop/stackpack/prepare_stackpack_provisioning_script.md). Any parameters or configuration item can be passed down to the `.stj` template file.
+After cleaning up the configuration file it is time to template out the variables exposed by your StackPack. As explained in the [Configuration input](stackpack/prepare_package.md) documentation section, it is possible to define some input fields that your StackPack requires to authenticate against some external sources and to differentiate between instances. To generalize the configuration, it is needed to inject the configuration file with some template parameters which is provided by the [Provisioning Script](stackpack/prepare_stackpack_provisioning_script.md). Any parameters or configuration item can be passed down to the `.stj` template file.
 
 One common example is to create the topic name required by the data source for a given instance. To ensure data received from the StackState Agent Check ends up in your StackPack's data source, make sure that you create the same topic in the provisioning script. Following code snippet shows how to create a function called `topicName` that generates a topic name for this instance based on the data provided by the user in the StackPack installation step.
 

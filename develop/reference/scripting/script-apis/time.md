@@ -1,28 +1,12 @@
 ---
+title: Specifying time
+kind: Documentation
 description: Functions related to time and timing.
 ---
 
-# Time - script API
+# Script API: Time
 
-Some scripting functions of StackState may accept a `TimeSlice`, `Instant` or `Duration` parameter, representing both a point in time and a range of time.
-
-## Type: `TimeSlice`
-
-A time slice represents all ongoing transactions. `Time.currentTimeslice()` returns an [async script result](../async_script_result.md) with a time slice for the current timestamp. For example:
-
-```text
-Time.currentTimeSlice().then { slice -> 
-    Topology.query('environments in ("Production")')
-    .at(slice)
-    .components()
-    .thenCollect { component -> 
-       Component
-       .withId(component.id)
-       .at(slice)
-       .get()
-    } 
-}
-```
+Some scripting functions of StackState may accept an `Instant` or `Duration` parameter, representing both a point in time and a range of time.
 
 ## Type: `Instant`
 

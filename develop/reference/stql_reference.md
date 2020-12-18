@@ -6,7 +6,7 @@ description: Build advanced topology queries with STQL
 
 ## Overview
 
-This page describes how to use the built-in StackState Query Language \(STQL\) to write advanced topology component filters. STQL queries are used in StackState to write [advanced topology filters](../../use/views/filters.md#advanced-topology-filters) and can be combined with scripts in the [Analytics](../../use/analytics.md) environment.
+This page describes how to use the built-in StackState Query Language \(STQL\) to write advanced topology component filters. STQL queries are used in StackState to write [advanced topology filters](https://github.com/StackVista/stackstate-docs/tree/e8f0507c73d0adb5625dec3f31ed65f2fbe98188/use/views/filters/README.md#advanced-topology-filters) and can be combined with scripts in the [Analytics](../../use/analytics.md) environment.
 
 An STQL query consists of [component filters](stql_reference.md#component-filters) and [functions](stql_reference.md#functions). The query output is a component, or set of components, filtered from the complete topology.
 
@@ -33,7 +33,7 @@ The filters described below can be combined using boolean operators to achieve c
 
 ### Wildcard
 
-You can use `*` as a full wildcard in a component filter. It is not possible to filter for partial matches using a wildcard character.
+You can use \* as a full wildcard in a component filter. It is not possible to filter for partial matches using a wildcard character.
 
 ### Examples
 

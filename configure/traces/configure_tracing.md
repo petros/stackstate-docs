@@ -1,6 +1,6 @@
 # Configure traces
 
-Traces can be viewed in the [Traces Perspective](../../use/views/traces-perspective.md) screen in the StackState UI. To enable tracing, you first need to install the StackState Agent StackPack and configure one or more tracing integrations, see [how to set up traces](how_to_setup_traces.md). This page describes how to override the default tracing configuration and hide traces from the StackState UI.
+Traces can be viewed in the [Traces Perspective](../../use/views/traces_perspective.md) screen in the StackState UI. To enable tracing, you first need to install the StackState Agent StackPack and configure one or more tracing integrations, see [how to set up traces](how_to_setup_traces.md). This page describes how to override the default tracing configuration and hide traces from the StackState UI.
 
 {% hint style="info" %}
 Note that it is not advised to change the default configuration for tracing.
@@ -20,8 +20,6 @@ stackstate.kafkaTraceToES.elasticsearch.index.maxIndicesRetained = 8 // defines 
 ```
 
 Restart the component for changes to take affect.
-
-For more details, see [how to configure the StackState metrics, events and traces data store](/setup/data-management/data_retention.md#stackstate-events-metrics-and-traces-data-store).
 
 ## Rate limits
 

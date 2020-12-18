@@ -1,73 +1,14 @@
 ---
-description: Functions that control the StackState user-interface.
+title: Script API - UI
+kind: Documentation
+description: Functions that control the user-interface.
 ---
 
-# UI - script API
+# Script API: UI
 
 {% hint style="info" %}
 These functions only work in the context of scripts that are executed by a user from the user-interface. [Component actions](../../../../configure/topology/component_actions.md) are an example of scripts that can trigger actions in the user-interface.
 {% endhint %}
-
-## Function: baseUrl
-
-Returns the baseUrl of the StackState instance as configured in the `application.conf` or `values.yaml`.
-
-**Examples:**
-
-Return the base URL from the StackState configuration.
-
-```text
-UI.baseUrl()
-```
-
-## Function: `createUrl`
-
-Creates a URL builder that can be used to generate URLs that can be linked back in Stackstate.
-
-**Args:**
-
-No arguments.
-
-**Return type:**
-
-CreateUrlBuilder
-
-**Builder methods:**
-
-* `view()` - returns a `ViewUrlBuilder` for the specified view with the following methods:
-  * `at(time: instant)` -  specifies a [time](time.md) for which the view query should be executed.
-  * `withComponent(component)` - creates a view URL with the specified component in focus.
-  * `url()` - gives the final URL of the view.
-
-**Examples:**
-
-Create a URL to a view at a specific time.
-
-```text
-View.getAll().then { views ->
-    UI.createUrl().view(views[0]).at('-15m').url()
-}
-```
-
-## Function: `redirectToURL`
-
-Opens a new tab in the user's browser to some URL.
-
-**Args:**
-
-* `url` - the URL to redirect the browser to.
-
-**Return type:**
-
-* Async: URLRedirectResponse
-
-**Examples:**
-
-Open the stackstate.com website in a new tab in the browser.
-
-```text
-UI.redirectToUrl("http://wwww.stackstate.com")
-```
 
 ## Function: `showReport`
 
@@ -98,7 +39,7 @@ UI.showReport(
 )
 ```
 
-Please note the `.stripMargin()` call. This is a Groovy function for strings that strips leading whitespace/control characters followed by '\|' from every line. This way, indenting can be retained without introducing leading whitespace in the STML.
+Please note the `.stripMargin()` call. This is a Groovy function for strings that strips leading whitespace/control characters followed by '\|' from every line. This way indenting can be retained without introducing leading whitespace in the STML.
 
 ## Function: `showTopologyByQuery`
 
@@ -122,13 +63,23 @@ Redirects the user-interface to show the Azure topology.
 UI.showTopologyByQuery('domain IN ("Azure")')
 ```
 
-Create a URL to a view focussing on a component.
+## Function: `redirectToURL`
+
+Opens a new tab in the user's browser to some URL.
+
+**Args:**
+
+* `url` - the URL to redirect the browser to.
+
+**Return type:**
+
+* Async: URLRedirectResponse
+
+**Examples:**
+
+Open the stackstate.com website in a new tab in the browser.
 
 ```text
-View.getAll().then { views ->
-    Component.withId(component).get().then { component ->
-        UI.createUrl().view(views[0]).at('-15m').withComponent(component).url()
-    }
-}
+UI.redirectToUrl("http://wwww.stackstate.com")
 ```
 

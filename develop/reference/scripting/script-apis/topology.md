@@ -2,7 +2,7 @@
 description: Functions for accessing the topology.
 ---
 
-# Topology - script API
+# Script API: Topology
 
 ## Function `query`
 
@@ -22,15 +22,12 @@ Topology.query(query: String)
 
 **Builder methods:**
 
-* `at(time: Instant or Timeslice)` - specifes a [time](time.md) for which the query should be executed. 
-  * Use an `instant` to query for transactions that started at a specific timestamp including at any point in the past. 
-  * Use the `currentTimeslice` to query for all transactions currently started or in progress.
+* `at(time: Instant)` - sets the exact [time](time.md) at which the query needs to be executed.
 * `repeatAt(time: Instant)` - repeats the same query but at a different exact [time](time.md).
 * `diff(queryResult: TopologyScriptApiQueryResponse)` - compares this query with another query. A query should be the result of a call to this function.
 * `diffWithPrev(queryResult: TopologyScriptApiQueryResponse)` - compares this query with the last query in the chain. A query should be the result of a call to this function. This builder method is only available after the `diff` builder method was called.
 * `components()` - returns a summary of the components. After this builder method no more builder methods can be called.
 * `fullComponents()` - returns the component with all their data. After this builder method no more builder methods can be called.
-* `problems()` - returns problem clusters for a given query along with the root cause and its contributing problems.
 * `relations()` - returns a summary of the relations. After this builder method no more builder methods can be called.
 * `fullRelations()` - returns the relations with all their data. After this builder method no more builder methods can be called.
 
@@ -73,16 +70,5 @@ Topology.query(query: String)
   Topology.query('environments in ("test")')
     .components()
     .thenCollect { it.name }
-  ```
-
-* Get the first root problem's first failing check - likely a major root cause of a problem in the queried topology:
-
-  ```text
-    Topology
-    .query('environments in ("test")')
-    .problems()
-    .then{ problems -> 
-        problems.isEmpty()? null : problems[0].failingCheckNames[0] 
-    }
   ```
 

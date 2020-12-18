@@ -35,7 +35,7 @@ Install the Dynatrace StackPack from the StackState UI **StackPacks** &gt; **Int
 
 To enable the Dynatrace check and begin collecting data from Dynatrace, add the following configuration to StackState Agent V2:
 
-1. Edit the Agent integration configuration file `/etc/stackstate-agent/conf.d/dynatrace_topology.d/conf.yaml` to include details of your Dynatrace instance:
+1. Edit the Agent integration configuration file `/etc/sts-agent/conf.d/dynatrace_topology.d/conf.yaml` to include details of your Dynatrace instance:
    * **url** - the URL of the Dynatrace instance.
    * **token** - an API token with access to the required [Dynatrace API endpoints](dynatrace.md#rest-api-endpoints).
 
@@ -66,12 +66,6 @@ To check the status of the Dynatrace integration, run the status subcommand and 
 ```text
 sudo stackstate-agent status
 ```
-
-### Upgrade
-
-When a new version of the Dynatrace StackPack is available in your instance of StackState, you will be prompted to upgrade in the StackState UI on the page **StackPacks** &gt; **Integrations** &gt; **Dynatrace**. For a quick overview of recent StackPack updates, check the [StackPack versions](../../setup/upgrade-stackstate/stackpack-versions.md) shipped with each StackState release.
-
-For considerations and instructions on upgrading a StackPack, see [how to upgrade a StackPack](../about-stackpacks.md#upgrade-a-stackpack).
 
 ## Integration details
 
@@ -123,7 +117,7 @@ When the Dynatrace integration is enabled, the following additional keys can be 
 
 For example, to filter a view by Dynatrace Management Zone, add the key `dynatrace-managementZones:<value>` to the **Labels** filter box.
 
-![Use a Dynatrace topology filter](../../.gitbook/assets/v42_dynatrace-filter.png)
+![Use a Dynatrace topology filter](../../.gitbook/assets/v41_dynatrace-filter.png)
 
 ### Open source
 
@@ -146,12 +140,6 @@ To uninstall the Dynatrace StackPack and disable the Dynatrace check:
    ```
 
 3. [Restart the StackState Agent\(s\)](agent.md#start-stop-restart-the-stackstate-agent) to apply the configuration changes.
-
-## Release notes
-
-**Dynatrace StackPack v1.0.0**
-
-* Feature: Gathers Topology from your Dynatrace instance and allows visualization of your Dynatrace components and the relations between them.
 
 ## See also
 

@@ -27,16 +27,15 @@ sts graph list-types
 Use the `sts graph export` command to export different types of [configuration nodes](cli_reference.md#sts-graph-list-types) from and to StackState. Nodes are stored in [StackState Templated Json](stj/) format.
 
 ```text
-sts graph export -i ids_to_export > file_name
+sts graph export --ids ids_to_export > file_name
 ```
 
 #### Arguments
 
 | Argument | Format | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `-i` | list of strings | "all" | The IDs to export. If none are specified all configuration will be exported. |
-| `-h` | - | - | Show usage information and available arguments. |
-| `file_name` | file\_name |  | The file to store the backup in. If none is specified, will be output to stdout. |
+| `--ids` | list of strings | "all" | The IDs to export. If none are specified all configuration will be exported. |
+| `file_name` | file\_name | ??? | The file to store the backup in. If none is specified, will be stored in ??? |
 
 #### Examples
 
@@ -58,8 +57,7 @@ sts graph import < file_name
 
 | Argument | Format | Required | Description |
 | :--- | :--- | :--- | :--- |
-| `-h` | - | - | Show usage information and available arguments. |
-| `file_name` | file\_name |  | The file to import StackState configuration from. |
+| `file_name` | file\_name | ??? | The file to import StackState configuration from. If none is specified, will be taken from ??? |
 
 #### Examples
 
@@ -95,32 +93,32 @@ sts anomaly send --component-name <Component> --stream-name <Metric Stream> --st
 | `--severity-score` | Optional | Anomaly severity score |
 | `-h` | Optional | See all available options |
 
-### sts event send
+### sts events send
 
-Use `sts event send` to send a single event with a given name.
+Use `sts events send` to send a single event with a given name.
 
 ```text
-sts event send
+sts events send
 ```
 
 | Argument | Details |
 | :--- | :--- |
-| `-h` | Show usage information and available arguments. |
+| `-h` | See all available options |
 
-### sts metric send
+### sts metrics send
 
 You can use the CLI to send one data point of a given value or to generate a set of values within a defined bandwidth. This is useful if you want to check a new configuration with predictable data.
 
 By default, generated metrics patterns are random between the specified bandwidth values. If a single bandwidth value is provided, the generated pattern will be a flat line. To generate a different type of pattern, use the arguments `--baseline` and `--linear`.
 
 ```text
-sts metric send [-b | -h | -p] <MetricName> <OptionalNumberValue> [--baseline | --linear ] --csv <file_name>
+sts metrics send [-b | -h | -p] <MetricName> <OptionalNumberValue> [--baseline | --linear ] --csv <file_name>
 ```
 
 | Argument | Details |
 | :--- | :--- |
 | `-b` | The bandwidth between which values will be generated. For example: `-b 100-250` |
-| `-h` | Show usage information and available arguments. |
+| `-h` | See all available options |
 | `-p` | Time period. This can be in weeks, days, hours, minutes and/or seconds. For example: `-p 4w2d6h30m15s` |
 | `--baseline` | Creates a daily usage curve. On Saturday and Sunday, the metric is much lower than on weekdays. The min and max of the curve are set by `-b` and `-p` |
 | `--linear` | Creates a line between the values given for `-b` plotted over the time given for `-p` |
@@ -136,11 +134,11 @@ Please refer to `usage.md` in the CLI zip archive for detailed instructions.
 
 | Argument | Details |
 | :--- | :--- |
-| `-h` | Show usage information and available arguments. |
+| `-h` | See all available options |
 
 ## Inspect topic data
 
-All data flowing through StackState flows through topics, for example topology, telemetry and traces. For debugging purposes, these topics can be inspected using the CLI. This can come in handy, for example, to make sure that StackState is receiving data correctly when you write your own integrations.
+All data flowing through StackState \(e.g. topology, telemetry, traces, etc.\) flows through topics. For debugging purposes, these topics can be inspected using the CLI. This can come in handy, for example, to make sure that StackState is receiving data correctly when you write your own integrations.
 
 ### sts topic list
 

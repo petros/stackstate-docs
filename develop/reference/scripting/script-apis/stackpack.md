@@ -4,7 +4,7 @@ kind: Documentation
 description: Functions to work with StackPacks
 ---
 
-# StackPack - script API
+# Script API: StackPack
 
 The StackPack script API provides handy operations to get the status of a StackPack
 

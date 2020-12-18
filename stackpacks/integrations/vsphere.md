@@ -1,10 +1,11 @@
 ---
-description: Near real-time synchronization with VMware vSphere
+title: VMware vSphere StackPack
+kind: documentation
 ---
 
-# VMware vSphere
+# VMWare vSphere
 
-## What is the VMware vSphere StackPack?
+## What is the VMWare vSphere StackPack?
 
 The VMware vSphere StackPack is used to create a near real-time synchronization with VMware vSphere.
 
@@ -101,8 +102,4 @@ The vSphere StackPack understands the following special tags:
 | vsphere.cpu.coreUtilization.avg \(gauge\) | CPU utilization of the corresponding core \(if hyper-threading is enabled\) as a percentage |  |  |
 | vsphere.cpu.costop.sum \(gauge\) | Time the virtual machine is ready to run but is unable to run due to co-scheduling constraints. Shown as millisecond | vsphere.cpuentitlement.latest | Amount of CPU allocated to a virtual machine or a resource pool. Shown as megahertz |
 | vsphere.cpu.demand.avg | The amount of CPU virtual machine would use if there was no CPU contention or CPU limits. Shown as megahertz |  |  |
-
-## Troubleshooting
-
-Troubleshooting steps for any known issues can be found in the [StackState support Knowledge base](https://support.stackstate.com/hc/en-us/search?category=360002777619&filter_by=knowledge_base&query=vSphere).
 

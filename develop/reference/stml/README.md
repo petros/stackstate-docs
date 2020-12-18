@@ -4,7 +4,7 @@ description: Build reports with StackState's markup language.
 
 # StackState Markup Language \(STML\)
 
-With StackState Markup Language \(STML\), you can create pretty formatted documents of StackState data. STML is a [markdown based language](https://en.wikipedia.org/wiki/Markdown) with extensions in the form of [HTML](https://en.wikipedia.org/wiki/HTML)-like tags.
+With StackState Markup Language \(STML\), you can create pretty formatted documents of StackState data. STML is a [markdown](https://en.wikipedia.org/wiki/Markdown) based language with extensions in the form of [HTML](https://en.wikipedia.org/wiki/HTML)-like tags.
 
 ## Rich text formatting using Markdown
 
@@ -13,8 +13,8 @@ STML is a valid superset of markdown. In other words, it is markdown plus extens
 ```text
 | To buy                              | Amount |
 |------------------------------- -----|--------|
-|[Apples](http://google.com/?q=apples)| 2      |
-|[Pears](http://google.com/?q=pears)  | 5      |
+|[Apples](http://goolge.com/?q=apples)| 2      |
+|[Pears](http://goolge.com/?q=pears)  | 5      |
 ```
 
 ## Tags

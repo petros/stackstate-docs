@@ -1,3 +1,11 @@
+---
+title: Permissions
+kind: Documentation
+aliases:
+  - /concepts/permissions/
+  - /authentication/permissions/
+---
+
 # Permissions
 
 ## Permissions in StackState
@@ -15,7 +23,7 @@ Views permissions are a set of permissions that allow for CRUD operations with V
 StackState comes with three predefined roles - **Administrator**, **Power User** and **Guest**.
 
 * Administrators have all permissions and access to all views. 
-* Power Users have all Administrator permissions _except_ update-permissions and upload-stackpacks. This role is typically granted to users that are not managing the entire StackState installation, but do need to configure StackState for their team\(s\).
+* Power Users have all Administratorpermissions _except_ update-permissions and upload-stackpacks. This role is typically granted to users that are not managing the entire StackState installation, but do need to configure StackState for their team\(s\).
 * Guests have access to view, as you can see below:
 
 ```text
@@ -31,34 +39,34 @@ stackstate-guest  access-view           everything
 
 ## List of all permissions in StackState
 
-| Permission | Purpose | Guest | Power-user | Administrator |
-| :--- | :--- | :---: | :---: | :---: |
-| access-explore | Access the Explore page | ✅ | ✅ | ✅ |
-| update-visualization | Change visualization settings | ✅ | ✅ | ✅ |
-| perform-custom-query | Access the topology filter | ✅ | ✅ | ✅ |
-| read-permissions | List all granted permissions across the entire system via the CLI | ✅ | ✅ | ✅ |
-| execute-component-actions | Execute component actions | ✅ | ✅ | ✅ |
-| create-views | Create views | - | ✅ | ✅ |
-| access-analytics | Access the Analytics page | - | ✅ | ✅ |
-| execute-scripts | Execute a query in the Analytics page | - | ✅ | ✅ |
-| read-settings | Access the Settings page | - | ✅ | ✅ |
-| update-settings | Update settings | - | ✅ | ✅ |
-| import-settings | Import settings | - | ✅ | ✅ |
-| export-settings | Export settings | - | ✅ | ✅ |
-| manage-topology-elements | Create/update/delete topology elements | - | ✅ | ✅ |
-| manage-stackpacks | Install/upgrade/uninstall StackPacks | - | ✅ | ✅ |
-| manage-annotations | Persist and fetch Anomaly annotations in StackState | - | ✅ | ✅ |
-| save-view | Save views | - | ✅ | ✅ |
-| access-view | Access a specific view \(when granted on a view\) or all views \(when granted on the `everything` subject\) | - | ✅ | ✅ |
-| delete-view | Delete views | - | ✅ | ✅ |
-| manage-telemetry-streams | Edit or create new streams for components via the UI | - | ✅ | ✅ |
-| access-log-data | Access StackState logs via the CLI | - | ✅ | ✅ |
-| access-topic-data | Access StackState receiver data via the CLI | - | ✅ | ✅ |
-| execute-component-templates | Invoke a component template API extension \(**internal use only**\) | - | ✅ | ✅ |
-| execute-node-sync | Reset or delete a synchronization | - | ✅ | ✅ |
-| access-admin-api | Access the administrator API | - | ✅ | ✅ |
-| update-permissions | Grant/revoke permissions or modify subjects | - | - | ✅ |
-| upload-stackpacks | Upload new \(versions of\) StackPacks | - | - | ✅ |
+| Permission | Purpose |
+| :--- | :--- |
+| create-views | Permission to create views |
+| access-analytics | Permission to access the Analytics page |
+| execute-scripts | Permission to execute a query in the Analytics page |
+| read-settings | Permission to access the Settings page |
+| update-settings | Permission to update settings |
+| import-settings | Permission to import settings |
+| export-settings | Permission to export settings |
+| manage-topology-elements | Permission to create / update / delete topology elements |
+| access-explore | Permission to access the Explore page |
+| update-visualization | Permission to change visualization settings |
+| perform-custom-query | Permission to access the topology filter |
+| read-permissions | Permission to list all granted permissions across the entire system via the CLI |
+| update-permissions | Permission to grant/revoke permissions or modify subjects |
+| upload-stackpacks | Permission to upload new \(versions of\) StackPacks |
+| manage-stackpacks | Permission to install / upgrade / uninstall StackPacks |
+| manage-annotations | Permission to persist and fetch Anomaly annotations in StackState |
+| save-view | Permission to save views |
+| access-view | Permission to access a specific view \(when granted on a view\) or all views \(when granted on the `everything` subject\) |
+| delete-view | Permission to delete views |
+| execute-component-actions | Permission to execute component actions |
+| manage-telemetry-streams | Permission to edit or create new streams for components via the UI |
+| access-log-data | Permission to access StackState logs via the CLI |
+| access-topic-data | Permission to access StackState receiver data via the CLI |
+| execute-component-templates | Permission to invoke a component template API extension \(**internal use only**\) |
+| execute-node-sync | Permission to reset or delete a synchronization |
+| access-admin-api | Permission to access the administrator API |
 
 ## UI elements and permissions
 
@@ -73,7 +81,7 @@ stackstate-guest  access-view           everything
 7. Export Settings page - requires `export-settings` system permission. Without this permission, Export Settings is removed from Settings Menu.
 8. Admin API - requires `access-admin-api` system permission. Without this permission, Admin API is removed from Settings Menu.
 
-![Pages1](../../../.gitbook/assets/pages1.png) ![Pages2](../../../.gitbook/assets/pages2.png)
+![Pages1](../../../.gitbook/assets/pages1.png) ![Pages2](https://github.com/StackVista/stackstate-docs/tree/60f66a46ab5fdf11b47d47ff1060b024e905f43d/.gitbook/assets/pages2.png)
 
 ### Navigation Bar permissions
 
@@ -83,7 +91,7 @@ stackstate-guest  access-view           everything
 4. Delete a view - requires `delete-view` permission. It's dependant on `Everything` or the specific view permissions.
 5. Sidebar access - requires `save-view`, `delete-view` or both of them to access these options in the sidebar.
 
-![NavigationBar1](../../../.gitbook/assets/navbar1.png) ![NavigationBar2](../../../.gitbook/assets/navbar2.png)
+![NavigationBar1](../../../.gitbook/assets/navbar1.png) ![NavigationBar2](https://github.com/StackVista/stackstate-docs/tree/60f66a46ab5fdf11b47d47ff1060b024e905f43d/.gitbook/assets/navbar2.png)
 
 ### Topology capabilities permissions
 
@@ -93,7 +101,7 @@ stackstate-guest  access-view           everything
 
 |  |  |  |
 | :---: | :---: | :---: |
-| ![TopologyCapabilities1](../../../.gitbook/assets/topocap1.png) | ![TopologyCapabilities2](../../../.gitbook/assets/topocap2.png) | ![TopologyCapabilities3](../../../.gitbook/assets/topocap3.png) |
+| ![TopologyCapabilities1](../../../.gitbook/assets/topocap1.png) | ![TopologyCapabilities2](https://github.com/StackVista/stackstate-docs/tree/60f66a46ab5fdf11b47d47ff1060b024e905f43d/.gitbook/assets/topocap2.png) | ![TopologyCapabilities3](https://github.com/StackVista/stackstate-docs/tree/60f66a46ab5fdf11b47d47ff1060b024e905f43d/.gitbook/assets/topocap3.png) |
 
 ### Topology views permissions
 
@@ -101,7 +109,7 @@ stackstate-guest  access-view           everything
 2. Access to a node actions menu - requires `execute-component-actions` permission.  
 3. Create relations between topology elements - requires system permissions: `manage-topology-elements`, `perform-custom-query`, and `read-settings`.
 
-![TopologyView1](../../../.gitbook/assets/v42_topoview1.png) ![TopologyView2](https://github.com/StackVista/stackstate-docs/tree/d2496325c86159cd6adbe80168d89f7ff825ca9f/.gitbook/assets/topoview2.png)
+![TopologyView1](../../../.gitbook/assets/v42_topoview1%20%282%29.png) ![TopologyView2](https://github.com/StackVista/stackstate-docs/tree/60f66a46ab5fdf11b47d47ff1060b024e905f43d/.gitbook/assets/topoview2.png)
 
 ### Analytics Page permissions
 
@@ -122,7 +130,7 @@ stackstate-guest  access-view           everything
 
 |  |  |
 | :---: | :---: |
-| ![ElementDetails1](../../../.gitbook/assets/eldet1.png) | ![ElementDetails2](https://github.com/StackVista/stackstate-docs/tree/d2496325c86159cd6adbe80168d89f7ff825ca9f/.gitbook/assets/eldet2.png) |
+| ![ElementDetails1](../../../.gitbook/assets/eldet1.png) | ![ElementDetails2](https://github.com/StackVista/stackstate-docs/tree/60f66a46ab5fdf11b47d47ff1060b024e905f43d/.gitbook/assets/eldet2.png) |
 
 ### Settings permissions
 

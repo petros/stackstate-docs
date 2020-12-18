@@ -4,7 +4,7 @@ kind: Documentation
 description: Fetch a list of views.
 ---
 
-# View - script API
+# Script API: View
 
 ## Function `getAll`
 

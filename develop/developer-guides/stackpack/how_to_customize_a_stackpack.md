@@ -1,3 +1,8 @@
+---
+title: How to customize a StackPack
+kind: Documentation
+---
+
 # Customize a StackPack
 
 ## StackPack configuration file
